@@ -12,7 +12,15 @@ loginForm.addEventListener('submit', (event) => {
     return;
   }
 
-  showMessage(`¡Bienvenido, ${username}! Has ingresado correctamente.`, false);
+  if (username === 'Ignacio' && password === '1234') {
+    showMessage(`¡Bienvenido, ${username}! Redirigiendo al panel...`, false);
+    setTimeout(() => {
+      window.location.href = 'dashboard.html';
+    }, 800);
+    return;
+  }
+
+  showMessage('Usuario o contraseña incorrectos. Usa Ignacio / 1234.', true);
 });
 
 forgotButton.addEventListener('click', () => {
