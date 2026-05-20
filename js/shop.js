@@ -68,6 +68,14 @@ function setupEventListeners() {
   document.getElementById('continueShoppingBtn').addEventListener('click', closeCheckoutModal);
   document.getElementById('downloadReceiptBtn').addEventListener('click', downloadReceipt);
 
+  const siteAlertCloseBtn = document.getElementById('siteAlertClose');
+  if (siteAlertCloseBtn) {
+    siteAlertCloseBtn.addEventListener('click', () => {
+      const siteAlert = document.getElementById('siteAlert');
+      if (siteAlert) siteAlert.style.display = 'none';
+    });
+  }
+
   // Cerrar modales con ESC
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
@@ -494,7 +502,8 @@ function handleCheckout() {
   try {
     const order = dataManager.createOrder({
       shipping_cost: currentShippingCost,
-      shipping_location: lastGeoLocation ? 'Geolocalizado' : 'Comuna'
+      shipping_location: lastGeoLocation ? 'Geolocalizado' : 'Comuna',
+      status: 'Devengado'
     });
 
     showCheckoutConfirmation(order);

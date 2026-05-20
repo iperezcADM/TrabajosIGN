@@ -71,13 +71,29 @@ function calculateShippingCost(distanceKm) {
  */
 function validateSKU(sku, excludeId = null) {
   if (!sku || sku.trim().length === 0) {
-    return { valid: false, error: 'SKU no puede estar vacío' };
+    return { valid: false, error: 'RANDOM no puede estar vacío' };
   }
   if (sku.trim().length < 3) {
-    return { valid: false, error: 'SKU debe tener al menos 3 caracteres' };
+    return { valid: false, error: 'RANDOM debe tener al menos 3 caracteres' };
+  }
+  if (!/^[A-Za-z0-9]+$/.test(sku.trim())) {
+    return { valid: false, error: 'RANDOM solo puede contener letras y números' };
   }
   if (!dataManager.isSkuUnique(sku.trim(), excludeId)) {
-    return { valid: false, error: 'Este SKU ya existe en el inventario' };
+    return { valid: false, error: 'Este RANDOM ya existe en el inventario' };
+  }
+  return { valid: true };
+}
+
+function validateCategory(category) {
+  if (!category || category.trim().length === 0) {
+    return { valid: false, error: 'SKU no puede estar vacío' };
+  }
+  if (category.trim().length < 3) {
+    return { valid: false, error: 'SKU debe tener al menos 3 caracteres' };
+  }
+  if (!/^[A-Za-z0-9]+$/.test(category.trim())) {
+    return { valid: false, error: 'SKU solo puede contener letras y números' };
   }
   return { valid: true };
 }
@@ -191,6 +207,39 @@ function exportToJSON(data, filename = 'export.json') {
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);
+}
+
+function exportToExcel(data, filename = 'inventario.xlsx') {
+  if (!window.XLSX) {
+    console.error('XLSX library no disponible');
+    showNotification('No se pudo generar el archivo Excel', 'danger');
+    return;
+  }
+
+  const worksheet = XLSX.utils.json_to_sheet(data);
+  const workbook = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(workbook, worksheet, 'Inventario');
+  XLSX.writeFile(workbook, filename);
+}
+
+function parseExcelFile(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      try {
+        const data = new Uint8Array(e.target.result);
+        const workbook = XLSX.read(data, { type: 'array' });
+        const sheetName = workbook.SheetNames[0];
+        const worksheet = workbook.Sheets[sheetName];
+        const rows = XLSX.utils.sheet_to_json(worksheet, { defval: '' });
+        resolve(rows);
+      } catch (error) {
+        reject(error);
+      }
+    };
+    reader.onerror = () => reject(new Error('Error leyendo el archivo'));
+    reader.readAsArrayBuffer(file);
+  });
 }
 
 /**

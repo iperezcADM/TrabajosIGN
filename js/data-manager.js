@@ -268,7 +268,7 @@ class DataManager {
       iva: totals.iva,
       shipping_cost: orderData.shipping_cost || 0,
       total: totals.total + (orderData.shipping_cost || 0),
-      status: 'Pendiente',
+      status: orderData.status || 'Devengado',
       created_at: new Date().toISOString(),
       ...orderData
     };
@@ -322,12 +322,14 @@ class DataManager {
     const products = this.data.products;
     const totalValue = products.reduce((sum, p) => sum + (p.price * p.stock_current), 0);
     const lowStockCount = this.getLowStockProducts().length;
-    const pendingOrders = this.data.orders.filter(o => o.status === 'Pendiente').length;
+    const devengadosOrdersCount = this.data.orders.filter(o => o.status === 'Devengado' || o.status === 'Pendiente').length;
+    const pendingOrders = devengadosOrdersCount;
 
     return {
       totalProducts: products.length,
       totalValue,
       lowStockCount,
+      devengadosOrdersCount,
       pendingOrders,
       totalOrders: this.data.orders.length
     };
