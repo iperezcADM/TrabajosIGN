@@ -2,6 +2,11 @@ const loginForm = document.getElementById('loginForm');
 const loginMessage = document.getElementById('loginMessage');
 const forgotButton = document.getElementById('forgotButton');
 
+const users = [
+  { username: 'Ignacio', password: '1234', role: 'admin', displayName: 'Ignacio' },
+  { username: 'Manuel', password: '1234', role: 'inventory', displayName: 'Manuel' }
+];
+
 loginForm.addEventListener('submit', (event) => {
   event.preventDefault();
   const username = document.getElementById('username').value.trim();
@@ -12,15 +17,17 @@ loginForm.addEventListener('submit', (event) => {
     return;
   }
 
-  if (username === 'Ignacio' && password === '1234') {
-    showMessage(`¡Bienvenido, ${username}! Redirigiendo al panel...`, false);
+  const user = users.find(u => u.username.toLowerCase() === username.toLowerCase() && u.password === password);
+  if (user) {
+    localStorage.setItem('ferreteria_user', JSON.stringify(user));
+    showMessage(`¡Bienvenido, ${user.displayName}! Redirigiendo al panel...`, false);
     setTimeout(() => {
       window.location.href = 'dashboard.html';
     }, 800);
     return;
   }
 
-  showMessage('Usuario o contraseña incorrectos. Usa Ignacio / 1234.', true);
+  showMessage('Usuario o contraseña incorrectos. Usa Ignacio / 1234 o Manuel / 1234.', true);
 });
 
 forgotButton.addEventListener('click', () => {
