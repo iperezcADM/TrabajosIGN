@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-KyZXEAg3QhqLMpG8r+Knujsl5+5hb7U6F3JXK2z0icGwVfL3XZm5G6F6lXbYpTJzG9mF3h3EKK1c6lp6Y1W7GA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="css/shop.css">
 </head>
@@ -26,6 +26,10 @@
       </div>
 
       <div class="header-actions">
+        <a class="btn btn-secondary btn-small header-link" href="dashboard.html">
+          <i class="fas fa-tachometer-alt"></i>
+          <span>Panel Admin</span>
+        </a>
         <button class="btn-cart" id="cartToggle">
           <i class="fas fa-shopping-cart"></i>
           <span class="cart-badge" id="cartBadge">0</span>
@@ -261,6 +265,23 @@
   <div id="globalSpinner" style="display: none;">
     <div class="spinner"></div>
   </div>
+
+  <footer class="shop-footer">
+    <div class="footer-inner">
+      <div>
+        <strong>Ferretería Shop</strong>
+        <p>Compra online y recibe tus herramientas con envío rápido.</p>
+      </div>
+      <div class="footer-links">
+        <a href="tienda.html">Catálogo</a>
+        <a href="dashboard.html">Panel Admin</a>
+        <a href="index.html">Login</a>
+      </div>
+      <div>
+        <span>© 2026 Ferretería IGN</span>
+      </div>
+    </div>
+  </footer>
 
   <!-- Scripts -->
   <script src="js/data-manager.js"></script>

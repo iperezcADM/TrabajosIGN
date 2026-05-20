@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-KyZXEAg3QhqLMpG8r+Knujsl5+5hb7U6F3JXK2z0icGwVfL3XZm5G6F6lXbYpTJzG9mF3h3EKK1c6lp6Y1W7GA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="css/admin.css">
 </head>
@@ -63,6 +63,24 @@
           <i class="fas fa-search"></i>
           <input type="text" id="searchInput" placeholder="Buscar SKU, nombre...">
         </div>
+        <div class="nav-dropdown">
+          <button class="btn btn-secondary btn-small" id="menuDropdownBtn">
+            <i class="fas fa-list"></i>
+            <span>Menú</span>
+          </button>
+          <div class="dropdown-menu" id="menuDropdown">
+            <button class="dropdown-item" data-section="inventario">Inventario</button>
+            <button class="dropdown-item" data-section="ordenes">Órdenes de Salida</button>
+            <button class="dropdown-item" data-section="reportes">Reportes</button>
+            <button class="dropdown-item" data-section="configuracion">Configuración</button>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="tienda.html">Ver Tienda</a>
+          </div>
+        </div>
+        <a class="btn btn-success btn-small header-link" href="tienda.html">
+          <i class="fas fa-store"></i>
+          <span>Ver Tienda</span>
+        </a>
         <button class="btn btn-secondary btn-small" id="userMenu">
           <i class="fas fa-user-circle"></i>
           <span>Administrador</span>
@@ -239,6 +257,22 @@
         </div>
       </section>
     </div>
+    <footer class="admin-footer">
+      <div class="footer-content">
+        <div>
+          <strong>Ferretería Admin</strong>
+          <p>Panel de control para inventario, órdenes y reportes.</p>
+        </div>
+        <div class="footer-links">
+          <a href="dashboard.html">Inicio</a>
+          <a href="tienda.html">Tienda Cliente</a>
+          <a href="index.html">Login</a>
+        </div>
+        <div class="footer-copy">
+          <span>© 2026 Ferretería IGN. Todos los derechos reservados.</span>
+        </div>
+      </div>
+    </footer>
   </main>
 
   <!-- Modal CRUD Producto -->
