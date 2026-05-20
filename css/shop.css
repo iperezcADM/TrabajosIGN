@@ -630,6 +630,83 @@
   z-index: 9999;
 }
 
+.shop-footer {
+  background: var(--panel);
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  padding: var(--spacing-lg) var(--spacing-lg) var(--spacing-xl);
+}
+
+.footer-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--spacing-lg);
+  flex-wrap: wrap;
+}
+
+.header-actions {
+  align-items: center;
+}
+
+.header-actions .header-link,
+.header-actions .btn-cart {
+  width: auto;
+}
+
+@media (max-width: 768px) {
+  .header-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .header-actions .header-link,
+  .header-actions .btn-cart {
+    width: 100%;
+  }
+
+  .header-actions .header-link {
+    justify-content: center;
+  }
+}
+
+.footer-inner strong {
+  color: var(--text);
+}
+
+.footer-links {
+  display: flex;
+  gap: var(--spacing-lg);
+  flex-wrap: wrap;
+}
+
+.footer-links a {
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+
+.footer-links a:hover {
+  color: var(--accent);
+}
+
+.header-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  padding: 10px 14px;
+  border-radius: var(--border-radius-md);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: var(--text);
+  text-decoration: none;
+  transition: all var(--transition);
+}
+
+.header-link:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
 /* ============ SHIPPING OPTIONS ============ */
 
 .shipping-options {
@@ -797,11 +874,30 @@
 @media (max-width: 768px) {
   .header-container {
     gap: var(--spacing-md);
+    flex-wrap: wrap;
+    align-items: stretch;
   }
 
   .header-search {
     max-width: none;
-    min-width: 200px;
+    min-width: unset;
+    width: 100%;
+  }
+
+  .header-actions {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    width: 100%;
+  }
+
+  .header-actions .header-link,
+  .header-actions .btn-cart {
+    width: 100%;
+  }
+
+  .hero-content h1 {
+    font-size: 1.8rem;
   }
 
   .hero-content h1 {
@@ -825,6 +921,26 @@
   .header-container {
     flex-direction: column;
     gap: var(--spacing-sm);
+    align-items: stretch;
+  }
+
+  .footer-inner {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+  }
+
+  .footer-links {
+    justify-content: center;
+  }
+
+  .header-actions {
+    align-items: stretch;
+  }
+
+  .header-actions .header-link,
+  .header-actions .btn-cart {
+    width: 100%;
   }
 
   .header-logo {
